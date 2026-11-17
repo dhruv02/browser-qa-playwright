@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Retail Demo Store | UI Automation Portfolio</title>
+  <style>
+    :root { font-family: system-ui, -apple-system, sans-serif; color: #172336; background: #f4f6fa; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    header { background: #102037; color: white; padding: 1.4rem max(1rem, calc((100% - 1080px) / 2)); }
+    header h1 { margin: 0; font-size: 1.8rem; }
+    header p { margin: .4rem 0 0; color: #d3e3f8; }
+    main { max-width: 1080px; margin: auto; padding: 2rem 1rem 4rem; display: grid; gap: 1.5rem; grid-template-columns: minmax(0,2fr) minmax(285px,1fr); }
+    h2 { margin: 0 0 1rem; }
+    .panel { border: 1px solid #dce2eb; border-radius: 12px; background: white; padding: 1.35rem; box-shadow: 0 4px 18px #1020370a; }
+    .products { display: grid; gap: 1rem; grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .product { border: 1px solid #dfe4ec; padding: 1rem; border-radius: 10px; }
+    .product h3 { margin: .25rem 0; }
+    .product p { color: #475569; margin: .4rem 0 .9rem; }
+    button { background: #1758a7; color: white; border: 0; padding: .65rem .9rem; border-radius: 7px; cursor: pointer; font: inherit; }
+    button:hover { background: #104680; }
+    button:focus-visible, input:focus-visible { outline: 3px solid #e2a941; outline-offset: 2px; }
+    .ghost { background: #edf2fa; color: #17457b; }
+    .ghost:hover { background: #e1eaf6; }
+    .search { width: 100%; font: inherit; padding: .75rem; margin-bottom: 1rem; border: 1px solid #afbbcb; border-radius: 8px; }
+    .cart-row { display:flex; justify-content:space-between; align-items:center; gap:.5rem; border-bottom:1px solid #e5e9f0; padding: .7rem 0; }
+    .cart-row span { font-size: .9rem; }
+    .actions { display:flex; gap:.3rem; align-items:center; }
+    .actions button { padding:.4rem .65rem; }
+    label { font-weight:600; display:block; margin:.9rem 0 .3rem; }
+    input[type="text"], input[type="email"] { width:100%; padding:.65rem; border:1px solid #aab6c4; border-radius:7px; font:inherit; }
+    form button { width:100%; margin-top:1.1rem; }
+    .muted { color:#67758a; }
+    .success { background:#ddf6e9; color:#165a3a; padding:.75rem; border-radius:8px; margin-top:1rem; }
+    .error { color:#a32432; font-weight:600; margin-top:.5rem; }
+    footer { max-width:1080px; margin:auto; padding:0 1rem 2rem; color:#718096; }
+    @media (max-width:720px) { main { grid-template-columns:1fr; }.products { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+<header><h1>Retail Demo Store</h1><p>Self-contained storefront for Playwright UI automation practice · No real payments</p></header>
+<main>
+  <section class="panel" aria-labelledby="catalog-heading">
+    <h2 id="catalog-heading">Shop products</h2>
+    <label for="search">Search products</label>
+    <input class="search" id="search" type="search" placeholder="Search by name or category" />
+    <p id="catalog-count" role="status" aria-live="polite"></p>
+    <div class="products" id="products"></div>
+  </section>
+  <aside class="panel" aria-labelledby="cart-heading">
+    <h2 id="cart-heading">Your cart (<span id="cart-count">0</span>)</h2>
+    <div id="cart-items"></div>
+    <p><strong>Total: <span id="cart-total">$0.00</span></strong></p>
+    <button class="ghost" id="clear-cart" type="button">Clear cart</button>
+    <h2 style="margin-top:2rem">Demo checkout</h2>
+    <form id="checkout" novalidate>
+      <label for="customer-name">Full name</label>
+      <input id="customer-name" name="name" type="text" autocomplete="name" required />
+      <label for="customer-email">Email</label>
+      <input id="customer-email" name="email" type="email" autocomplete="email" required />
+      <button type="submit">Place demo order</button>
+    </form>
+    <div id="feedback" role="status" aria-live="polite"></div>
+  </aside>
+</main>
+<footer>Sample data and fictional orders only. No payment collection or external API calls.</footer>
+<script src="store.js" defer></script>
+</body>
+</html>
